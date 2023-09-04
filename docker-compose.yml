@@ -16,7 +16,7 @@ services:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
     ports:
-      - '5431:${DB_PORT}'
+      - '5431:5432'
     networks:
       - swapi_backend
     deploy:
@@ -31,7 +31,7 @@ services:
       - "5080:80"
     container_name: swapi_pgadmin
     depends_on:
-      - asinc_pg_db
+      - swapi_pg_db
     environment:
       PGADMIN_DEFAULT_EMAIL: "aaa@yandex.ru"
       PGADMIN_DEFAULT_PASSWORD: "111"

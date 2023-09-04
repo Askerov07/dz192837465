@@ -19,7 +19,7 @@ from sqlalchemy.ext.declarative import declarative_base
 # базовый класс для моделей
 Base = declarative_base()
 
-from sqlalchemy import Column, Integer, String, ARRAY, Engine
+from sqlalchemy import Column, Integer, String, ARRAY
 
 
 # модель персонажей

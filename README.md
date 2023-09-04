@@ -1,3 +1,7 @@
+`docker-compose up -d`  
+`python swapi.py`
+
+
 # Домашнее задание к лекции «Asyncio»
 
 В этом задании мы будем выгружать из API персонажей Start Wars и загружать в базу данных.<br>
