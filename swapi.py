@@ -87,14 +87,15 @@ async def get_people():
             paste_to_db_coro = paste_to_db(person_coros)
             create_task(paste_to_db_coro)
 
-    taks_for_shutdown = all_tasks() - {current_task(), }
-    for task in taks_for_shutdown:
+    tasks_for_shutdown = all_tasks() - {current_task(), }
+    for task in tasks_for_shutdown:
         await task
 
     await engine.dispose()
 
 
-async def paste_to_db(jsons):
+async def paste_to_db(coros):
+    jsons = await coros
     async with Session() as session:
         orm_objects = [SwapiPeople(**json_) for json_ in jsons]
         session.add_all(orm_objects)
