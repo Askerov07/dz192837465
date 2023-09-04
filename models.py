@@ -1,22 +1,13 @@
-#   ФАБРИКА асинхронных движков и асинхронных сессий
-from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
+from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
 
 from db_conf import DSN
 engine = create_async_engine(DSN)
 
-# менеджер сессий
-from sqlalchemy.orm import sessionmaker
+Session = async_sessionmaker(bind=engine,
+                             class_=AsyncSession,
+                             expire_on_commit=False)
 
-# базовый класс для сессий (ФАБРИКА СЕССИЙ)
-Session = sessionmaker(bind=engine,
-                       class_=AsyncSession,
-                       expire_on_commit=False
-                       )
-
-# ФАБРИКА базовых классов
 from sqlalchemy.ext.declarative import declarative_base
-
-# базовый класс для моделей
 Base = declarative_base()
 
 from sqlalchemy import Column, Integer, String
